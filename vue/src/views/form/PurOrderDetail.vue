@@ -181,7 +181,6 @@ export default {
           .then(res =>{
             this.pur_order = res.data
             if(res.data.submitState === '已提交'){
-              console.log("Yes")
               this.isSubmit = true
             }
           })

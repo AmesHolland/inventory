@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-06-03
  */
 @RestController
-@RequestMapping("/depot-detail")
+@RequestMapping("/depot_detail")
 public class DepotDetailController {
 
     @Resource

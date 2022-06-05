@@ -8,7 +8,8 @@
         <where>
             sale_order.st_id = staff.id and
             is_delete = 0 and
-            sale_order.cl_id = client.id
+            sale_order.cl_id = client.id and
+            is_out = 0
             <if test="submitState != null and submitState != ''">
                 and submit_state = #{submitState}
             </if>

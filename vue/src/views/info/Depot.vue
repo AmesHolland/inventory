@@ -33,6 +33,7 @@
       <el-table-column prop="remark" label="备注"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
+          <el-button type="primary" @click="$router.push('/depot_detail?id=' + scope.row.id)">仓库详情<i class="el-icon-home"></i></el-button>
           <el-button v-if="scope.row.st_id === form.stId" type="success" @click="handleEdit(scope.row)">编辑<i class="el-icon-edit"></i></el-button>
           <el-popconfirm
               class="ml-5"

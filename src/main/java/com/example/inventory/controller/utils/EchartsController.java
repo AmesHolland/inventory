@@ -51,6 +51,8 @@ public class EchartsController {
             saleTotal += b.getSale();
         }
 
+        Integer num = echartsMapper.getNum();
+
         Map<String, Object> map = new HashMap<>();
         map.put("x", date);
         map.put("pur", pur);
@@ -58,6 +60,7 @@ public class EchartsController {
         map.put("purTotal", purTotal);
         map.put("saleTotal", saleTotal);
         map.put("depotNum", list.size());
+        map.put("num", num);
 
         return Result.success(map);
     }
@@ -70,6 +73,8 @@ public class EchartsController {
 
         return Result.success(pie);
     }
+
+
 
 
 }

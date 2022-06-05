@@ -23,4 +23,7 @@ public interface EchartsMapper {
     @Select("select role name, count(role) value from staff group by role")
     List<Pie> getPie();
 
+    @Select("select count(*) from staff")
+    Integer getNum();
+
 }

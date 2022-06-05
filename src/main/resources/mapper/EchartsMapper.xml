@@ -15,7 +15,7 @@
         select  DATE(pur_order.create_time) date, sum(pur_order.total_amount) pur,sum(sale_order.total_amount) sale
         from pur_order,sale_order
         where DATE(pur_order.create_time) = DATE(sale_order.create_time)
-        GROUP BY DATE(pur_order.create_time) limit 7
+        GROUP BY DATE(pur_order.create_time) order by DATE(pur_order.create_time)  limit 7
     </select>
 
 </mapper>

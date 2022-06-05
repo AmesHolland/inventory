@@ -5,7 +5,7 @@
         <el-card style="color:#409EFF;">
           <div><i class="el-icon-user"></i>员工总数</div>
           <div style="padding: 10px 0;text-align: center;font-weight: bold">
-            {{this.totalMemeber}}
+            {{this.totalMember}}
           </div>
         </el-card>
       </el-col>
@@ -57,7 +57,7 @@ export default {
     return{
       purTotal : 0,
       saleTotal : 0,
-      totalMemeber : 0,
+      totalMember : 0,
       depotNum :0
     }
   },
@@ -139,6 +139,7 @@ export default {
           this.purTotal = res.data.purTotal
           this.saleTotal = res.data.saleTotal
           this.depotNum = res.data.depotNum
+          this.totalMember = res.data.num
 
           myChart.setOption(option)
 
@@ -148,7 +149,7 @@ export default {
         .then(res =>{
 
           pieOption.series[0].data = res.data
-          this.totalMemeber = res.data.length
+
           pieChart.setOption(pieOption)
 
         })
