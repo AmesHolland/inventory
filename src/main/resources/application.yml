@@ -1,0 +1,22 @@
+
+server:
+  port: 9090
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/imdb?serverTimeZone=GMT%2b8&useSSL=false
+    username: root
+    password: root
+#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    url: jdbc:sqlserver://localhost:1433;database=imdb;encrypt=true;trustServerCertificate=true
+#    username: sa
+#    password: 123456
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+files:
+  upload:
+    path: D:/ProgramFiles/Sundry/Files/

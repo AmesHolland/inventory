@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.inventory.mapper.EchartsMapper">
+
+
+    <select id="getPurchase" resultType="com.example.inventory.entity.utils.Balance">
+        select  DATE(pur_order.create_time) date, sum(total_amount) amount from pur_order GROUP BY DATE(pur_order.create_time) limit 7
+    </select>
+
+    <select id="getSale" resultType="com.example.inventory.entity.utils.Balance">
+        select  DATE(sale_order.create_time) date, sum(total_amount) amount from sale_order GROUP BY DATE(sale_order.create_time) limit 7
+    </select>
+
+    <select id="getBalance" resultType="com.example.inventory.entity.utils.Balance">
+        select  DATE(pur_order.create_time) date, sum(pur_order.total_amount) pur,sum(sale_order.total_amount) sale
+        from pur_order,sale_order
+        where DATE(pur_order.create_time) = DATE(sale_order.create_time)
+        GROUP BY DATE(pur_order.create_time) limit 7
+    </select>
+
+</mapper>

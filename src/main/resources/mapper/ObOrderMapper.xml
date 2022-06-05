@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.inventory.mapper.ObOrderMapper">
+
+
+    <select id="findPage" resultType="com.example.inventory.entity.form.ObOrder">
+        select ob_order.*, staff.name stName from ob_order, staff
+        <where>
+            ob_order.st_id = staff.id and is_delete = 0
+            <if test="submitState != null and submitState != ''">
+                and submit_state = #{submitState}
+            </if>
+            <if test="procState != null and procState != ''">
+                and proc_state = #{procState}
+            </if>
+            <if test="stName != null and stName != ''">
+                and staff.name like concat('%', #{stName},'%')
+            </if>
+        </where>
+        order by ob_order.id desc
+    </select>
+
+    <select id="getByIdWithMore" resultType="com.example.inventory.entity.form.ObOrder">
+        select ob_order.*, staff.name stName
+        from ob_order, staff
+        where ob_order.st_id = staff.id
+          and is_delete = 0
+          and ob_order.id = #{id}
+    </select>
+
+</mapper>

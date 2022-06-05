@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.inventory.mapper.SaleOrderDetailMapper">
+
+    <select id="findPage" resultType="com.example.inventory.entity.form.SaleOrderDetail">
+        select sale_order_detail.* , cargo.name ca_name, cargo.price ca_price
+        from sale_order_detail, cargo
+        where sale_order_detail.ca_id = cargo.id
+          and sale_ord_id = #{sale_ord_id}
+    </select>
+
+
+
+</mapper>

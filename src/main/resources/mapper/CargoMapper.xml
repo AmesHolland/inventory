@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.inventory.mapper.CargoMapper">
+
+    <select id="findPage" resultType="com.example.inventory.entity.info.Cargo">
+        select cargo.*, sum(ca_num) stock
+        from cargo, depot_detail
+        <where>
+            cargo.id = depot_detail.ca_id
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="deId != null and deId !=''">
+                and depot_detail.de_id = #{deId}
+            </if>
+        </where>
+        group by cargo.id
+    </select>
+
+</mapper>

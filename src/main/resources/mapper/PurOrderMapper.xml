@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.inventory.mapper.PurOrderMapper">
+
+    <select id="findPage" resultType="com.example.inventory.entity.form.PurOrder">
+        select pur_order.*, staff.name stName from pur_order, staff
+         <where>
+             pur_order.st_id = staff.id and is_delete = 0
+             <if test="submitState != null and submitState != ''">
+                 and submit_state = #{submitState}
+             </if>
+             <if test="auditState != null and auditState != ''">
+                and audit_state = #{auditState}
+             </if>
+             <if test="verifyState != null and verifyState != ''">
+                 and verify_state = #{verifyState}
+             </if>
+             <if test="stName != null and stName != ''">
+                 and staff.name like concat('%', #{stName},'%')
+             </if>
+         </where>
+        order by pur_order.id desc
+    </select>
+
+    <select id="selectByIdWithMore" resultType="com.example.inventory.entity.form.PurOrder">
+        select pur_order.*, staff.name stName from pur_order, staff where pur_order.st_id = staff.id and is_delete = 0 and  pur_order.id = #{id}
+    </select>
+
+</mapper>
