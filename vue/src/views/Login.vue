@@ -2,7 +2,7 @@
   <div class="wrapper">
 
     <div style="margin:200px auto; background-color: #fff;width:350px; height: 300px;padding:10px; border-radius: 5px">
-      <div style="margin: 20px 0;text-align: center;font-size: 24px"><b>登录</b></div>
+      <div style="margin: 20px 0;text-align: center;font-size: 24px"><b>库存管理系统</b></div>
       <el-form :model="staff" :rules="rules" ref="staffForm">
         <el-form-item prop="id">
           <el-input placeholder="请输入员工号" size="medium" style="margin: 10px 0px" prefix-icon="el-icon-user" v-model="staff.id"></el-input>

@@ -3,9 +3,14 @@ package com.example.inventory.controller.form;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.inventory.common.Result;
+import com.example.inventory.entity.info.Staff;
+import com.example.inventory.utils.TokenUtils;
+import org.apache.poi.util.StringUtil;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Objects;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 import com.example.inventory.service.IPurOrderService;
@@ -102,7 +107,20 @@ public class PurOrderController {
                            @RequestParam String stName
     ) {
 
-        Page<PurOrder> page = purOrderService.findPage(new Page<>(pageNum, pageSize),submitState, auditState, verifyState, stName);
+        Staff currentUser = TokenUtils.getCurrentUser();
+
+        Page<PurOrder> page = null;
+
+        if(currentUser.getRole() != null && Objects.equals(currentUser.getRole(), "管理员")){
+        }
+        else{
+            stName = currentUser.getName();
+        }
+
+        page = purOrderService.findPage(new Page<>(pageNum, pageSize),submitState, auditState, verifyState, stName);
+
+
+
         return Result.success(page);
     }
 
